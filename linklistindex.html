@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List Manager (Linked List)</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1efff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #1B1833;
+            color: white;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .movie-controls {
+            flex: 1;
+            background-color: #e7caff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .movie-list {
+            flex: 1;
+            background-color: #e7caff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        #movieList {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+        }
+
+        #movieList li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+
+        #movieList li:hover {
+            background-color: #f9f9ff;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2e0c5a;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ec67b5;
+            color: #031d22;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Movie Watchlist Manager</h1>
+
+    <div class="main-container">
+        <div class="movie-controls">
+            <h3>Add a Movie</h3>
+            <div class="form-group">
+                <input type="text" id="movieInput" placeholder="Enter a movie">
+                <button onclick="addMovieAtBeginning()">Add at Beginning</button>
+                <button onclick="addMovieAtEnd()">Add at End</button>
+            </div>
+
+            <h3>Remove a Movie</h3>
+            <div class="form-group">
+                <button onclick="removeMovieFromBeginning()">Remove from Beginning</button>
+                <button onclick="removeMovieFromEnd()">Remove from End</button>
+            </div>
+
+            <h3>Remove Specific Movie</h3>
+            <div class="form-group">
+                <input type="text" id="removeInput" placeholder="Remove movie">
+                <button onclick="removeSpecificMovie()">Remove</button>
+            </div>
+
+            <h3>Search a Movie</h3>
+            <div class="form-group">
+                <input type="text" id="searchInput" placeholder="Search for a movie">
+                <button onclick="searchMovie()">Search Movie</button>
+            </div>
+        </div>
+
+        <div class="movie-list">
+            <h3>Current Movie Watchlist</h3>
+            <ul id="movieList"></ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Developed by BSCPE 2-3 Group 5.</p>
+    </footer>
+
+    <script>
+        function refreshMovies(movies) {
+            $('#movieList').empty();
+            movies.forEach(movie => {
+                $('#movieList').append(`<li>${movie}</li>`);
+            });
+
+            if (movies.length >= 6) {
+                $('.movie-list').css('max-height', '300px');
+                $('.movie-list').css('overflow-y', 'auto');
+            } else {
+                $('.movie-list').css('max-height', 'none');
+                $('.movie-list').css('overflow-y', 'visible');
+            }
+        }
+
+        function addMovieAtBeginning() {
+            const movie = $('#movieInput').val().trim();
+            if (movie === "") {
+                alert("Error: Movie name cannot be empty.");
+                return;
+            }
+            $.post('/add_beginning', { movie })
+                .done(function(data) {
+                    refreshMovies(data.movies);
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 400) {
+                        alert(xhr.responseJSON.error);
+                    } else {
+                        alert("An unexpected error occurred.");
+                    }
+                });
+            document.getElementById("movieInput").value = "";
+        }
+
+        function addMovieAtEnd() {
+            const movie = $('#movieInput').val().trim();
+            if (movie === "") {
+                alert("Error: Movie name cannot be empty.");
+                return;
+            }
+            $.post('/add_end', { movie })
+                .done(function(data) {
+                    refreshMovies(data.movies);
+            })
+            .fail(function(xhr) {
+                if (xhr.status === 400) {
+                    alert(xhr.responseJSON.error);
+                } else {
+                    alert("An unexpected error occurred.");
+                }
+            });
+            document.getElementById("movieInput").value = "";
+        }
+
+        function removeMovieFromBeginning() {
+            $.post('/remove_beginning') 
+                .done(function(data) {
+                    alert(`Removed: ${data.removed}`);
+                    refreshMovies(data.movies);
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 400) {
+                        alert(xhr.responseJSON.error);
+                    } else {
+                        alert("An unexpected error occurred.");
+                    }
+                });
+        }
+
+        function removeMovieFromEnd() {
+            $.post('/remove_end') 
+                .done(function(data) {
+                    alert(`Removed: ${data.removed}`);
+                    refreshMovies(data.movies);
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 400) {
+                        alert(xhr.responseJSON.error);
+                    } else {
+                        alert("An unexpected error occurred.");
+                    }
+                });
+        }
+
+        function removeSpecificMovie() {
+            const movie = $('#removeInput').val().trim();
+            if (movie === "") {
+                alert("Error: Please enter a movie name to remove.");
+                return;
+            }
+            $.post('/remove_movie', { movie })
+                .done(function(data) {
+                    alert(`Removed: ${data.removed}`);
+                    refreshMovies(data.movies);
+                })
+                .fail(function(xhr) {
+                    if (xhr.status === 404) {
+                        alert(xhr.responseJSON.error);
+                    } else {
+                        alert("An unexpected error occurred.");
+                    }
+                });
+            document.getElementById("removeInput").value = "";
+        }
+
+        function searchMovie() {
+            const movie = $('#searchInput').val().trim();
+            if (movie === "") {
+                alert("Error: Please enter a movie name to search.");
+                return;
+            }
+            $.post('/search_movie', { movie }, function(data) {
+                alert(data.found ? "Movie Found!" : "Movie Not Found!");
+            });
+            document.getElementById("searchInput").value = "";
+        }
+    </script>
+</body>
+</html>

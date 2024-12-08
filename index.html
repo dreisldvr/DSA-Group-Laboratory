@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage | BSCPE 2-3 Group 5 Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1efff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #1B1833;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .description {
+            width: 40%;
+            font-size: 16px;
+            color: #555;
+            text-align: justify;
+        }
+        .navigation {
+            width: 55%;
+            text-align: center;
+        }
+        .button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 25px;
+            font-size: 16px;
+            color: white;
+            background-color: #2e0c5a;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #ec67b5;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BSCPE 2-3 Group 5 Portfolio</h1>
+    </header>
+    <div class="container">
+        <div class="description">
+            <h2>WELCOME!</h2>
+            <p>
+                This portfolio showcases our group's laboratory exercises for the Data Structures and Algorithms course. Here, you can explore our implementations of data structures such as Linked Lists, Stacks, and Queues. 
+                <br><br>
+                Each exercise demonstrates a specific concept:
+                <ul>
+                    <li><b>Linked List:</b> Includes operations such as adding, removing, and displaying movies in a watchlist.</li>
+                    <li><b>Stack Implementation:</b> The Shunting Yard algorithm for converting infix to postfix notation.</li>
+                    <li><b>Queue Implementation:</b> Standard Queue and De-Queue operations.</li>
+                </ul>
+                All features are integrated with Flask web application, allowing you to interact with the data structures in real-time. 
+            </p>
+        </div>
+        <div class="navigation">
+            <h2>Navigation</h2>
+            <a href="/movies" class="button">Manage Movie Watchlist (Linked List)</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Developed by BSCPE 2-3 Group 5.</p>
+    </footer>
+</body>
+</html>
