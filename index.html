@@ -4,38 +4,371 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Homepage | BSCPE 2-3 Group 5 Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Geo&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Handjet&display=swap" rel="stylesheet">
+
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f1efff;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #3d0a52, #000000, #480404 );
             color: #333;
             margin: 0;
             padding: 0;
         }
         header {
-            background-color: #1B1833;
-            color: white;
-            padding: 20px;
+            background-color: rgba(36, 31, 46, 0.92); /*Translucent background */
+            color: #333;
+            padding: 35px;
             text-align: center;
+            position: sticky; /*header fixed at the top */
+            top: 0;
+            z-index: 1000; /*stays above other elements */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /*Subtle shadow */
+            display: flex; /* Flexbox layout */
+            justify-content: space-between; /* Space between left text and navigation */
+            align-items: center;
         }
+        .header-left {
+            font-size: 24px; /* Adjust font size for logo */
+            font-family: 'Geo', sans-serif; /* Apply the chosen font */
+            color: #ffffff; /* Keep the text color white or as per design */
+            letter-spacing: 1px; /* Optional: add spacing for style */
+            margin-left: 8px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            margin-right: 35px;
+            display: flex; /*Align links horizontally */
+            justify-content: flex-end;
+            gap: 85px; /*Spacing between links */
+        }
+
+        nav ul li {
+            display: inline; /*Inline items */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 17px;
+            padding-right: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            background-color: #68477b; /* Highlight on hover */
+            color: white; /* White color on hover */
+            font-size: 17px; /* Increase font size when hovered */
+            transition: background-color 0.3s ease, color 0.3s ease, font-size 0.3s ease; /* Smooth transition */
+        }
+        
         .container {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 50px;
+            padding: 75px;
             max-width: 1200px;
             margin: 0 auto;
         }
+        #welcome {
+            font-family: "Roboto", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url('https://cdn.discordapp.com/attachments/1315653090312982638/1316029175563419689/film1.jpg?ex=67598f2e&is=67583dae&hm=7e46a37ceb94741a5b26a341c056ffbb4ce0f348d457c3c3740fe3be89be0518&') no-repeat center center fixed;
+            background-size: cover; /* Ensures the image covers the entire viewport */
+            position: relative; /* Allows positioning of the overlay */
+            color: #ffffff; /* Adjust text color for contrast */
+        }
+
+        #welcome::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Black transparent overlay */
+            z-index: -1; /* Places the overlay behind content */
+        }
+
+        
+
+        #navigation {
+            background: url('https://media.discordapp.net/attachments/1315653090312982638/1316029175311630366/clip1.jpg?ex=67598f2e&is=67583dae&hm=669bdbca2953f24ba6b9018852978f0219426aa2f7efe56fc2b32884433ce55b&=&format=webp&width=662&height=662') no-repeat center center fixed;
+            padding: 100px 0;
+            background-size: cover; /* Ensures the image covers the entire viewport */
+            position: relative; /* Allows positioning of the overlay */
+            text-align: center;
+            color: #ffffff; /* Adjust text color for contrast */
+            margin-top: 0;
+        }
+
+        #navigation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Black transparent overlay */
+            z-index: -1; /* Places the overlay behind content */
+        }
+
+        
+        #about-us {
+            background: url('https://cdn.discordapp.com/attachments/1315653090312982638/1316029176511467551/us1.jpg?ex=67598f2e&is=67583dae&hm=ae60e0e6a0ee72cefb19ec9bad14b6913b24701a6310039d240c367f979dc2df&') no-repeat center center fixed;
+            padding: 100px 0;
+            background-size: cover; /* Ensures the image covers the entire viewport */
+            position: relative; /* Allows positioning of the overlay */
+            text-align: center;
+            color: #ffffff; /* Adjust text color for contrast */
+            margin-top: 0; /* Remove extra space at the top */
+        }
+
+        /* ::before pseudo-element to create blur overlay */
+        #about-us::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+            backdrop-filter: blur(7px); /* Apply blur effect */
+            z-index: 1; /* Place overlay above the image */
+        }
+        
+
+        #about-us h2 {
+            font-size: 50px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        #about-us p {
+            font-size: 1.2rem;
+            color: #f3f3f3;
+            margin-bottom: 40px;
+            z-index: 2; /* Place overlay above the image */
+        }
+
+                
+        .aboutcon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75vh;
+            flex-direction: column;
+            text-align: center;
+            z-index: 2; /* Place overlay above the image */
+        }
+
+
+        .team-container {
+            display: flex;
+            flex-direction: row; /* Arrange tiles in a single row */
+            justify-content: space-evenly; /* Distribute space evenly between tiles */
+            align-items: center; /* Align items vertically in the row */
+            gap: 20px; /* Add space between tiles */
+            margin: 0 auto; /* Center the container */
+            max-width: 1200px; /* Set a maximum width for the row */
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        /* Tile Styles */
+        .team-tile {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px; /* Set a fixed width for consistency */
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        .team-tile:hover {
+            transform: translateY(-10px); /* Lift effect on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        .team-tile img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%; /* Circular image */
+            object-fit: cover;
+            margin-bottom: 20px;
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        .team-tile h3 {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 10px;
+            z-index: 2; /* Place overlay above the image */
+        }
+
+        .team-tile p {
+            font-size: 15px !important;
+            color: #000000 !important;
+            z-index: 4; /* Place overlay above the image */
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+            justify-content: center;
+            align-items: center;
+            z-index: 1000; /* Ensure it stays above other content */
+        }
+
+        .modal-content {
+            background-color: #272727;
+            border-radius: 10px;
+            padding: 20px;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #6a1b9a;
+        }
+
+        #contact {
+            background-color: #ffffff;
+            padding: 75px;
+            margin: 0; 
+            text-align: center;
+        }
+
+        #contact h2 {
+            font-size: 35px;
+            color: #333; 
+        }
+
+        #contact p {
+            font-size: 17px;
+        }
+        
+        .card {
+            display: block;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 20px auto;
+            overflow: hidden; 
+            transition: transform 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Lift effect on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-img {
+            width: 100%;
+            height: auto;
+            border-bottom: 2px solid #ccc; /* Divider between image and content */
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .card:hover h3 {
+            color: #6a1b9a; /* Change text color on hover for added interactivity */
+        }
+        
         .description {
             width: 40%;
             font-size: 16px;
             color: #555;
             text-align: justify;
         }
+
+        
+        #welcome .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 70vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .welcome-text {
+            font-size: 55px; /* Larger size for the "Welcome" text */
+            color: #ffffff;
+            margin-top: -50px;
+        }
+
+        .descriptionsawelcome {
+            font-size: 18px; /* Regular size for the description */
+            color: #ffffff;
+            max-width: 75%; /* Adjust the width if needed */
+            text-align: left;
+            margin-left: 0 auto;
+        }
+
         .navigation {
             width: 55%;
             text-align: center;
         }
+
+        #navigation h2 {
+            font-size: 45px; /* Make the text bigger */
+            margin-left: 20px; /* Move the text slightly to the right */
+            margin-top: 150px;
+        }
+
+        #navigation .card {
+            margin-top: 10px; /* Push the card slightly below the Navigation text */
+        }
+
         .button {
             display: block;
             margin: 20px auto;
@@ -52,37 +385,181 @@
         .button:hover {
             background-color: #ec67b5;
         }
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: fadeSlide 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeSlide {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Blur Overlay */
+        #scroll-blur {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 90px; /* Height of the blurred area */
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 999; /* Ensure it's above the content */
+            background: rgba(255, 255, 255, 0.05); /* Slightly translucent background */
+            backdrop-filter: blur(0px); /* Initial blur value */
+            transition: backdrop-filter 0.2s ease; /* Smooth blur transition */
+        }
+        
+
         footer {
             text-align: center;
-            margin-top: 20px;
-            color: #888;
+            margin-top: 135px;
+            color: #867474;
             font-size: 14px;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>BSCPE 2-3 Group 5 Portfolio</h1>
+        <div class="header-left">pentaCODE</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#navigation">Projects</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
-    <div class="container">
-        <div class="description">
-            <h2>WELCOME!</h2>
-            <p>
-                This portfolio showcases our group's laboratory exercises for the Data Structures and Algorithms course. Here, you can explore our implementations of data structures such as Linked Lists, Stacks, and Queues. 
-                <br><br>
-                Each exercise demonstrates a specific concept:
-                <ul>
-                    <li><b>Linked List:</b> Includes operations such as adding, removing, and displaying movies in a watchlist.</li>
-                    <li><b>Stack Implementation:</b> The Shunting Yard algorithm for converting infix to postfix notation.</li>
-                    <li><b>Queue Implementation:</b> Standard Queue and De-Queue operations.</li>
-                </ul>
-                All features are integrated with Flask web application, allowing you to interact with the data structures in real-time. 
-            </p>
+
+    <div id="scroll-blur"></div>
+
+    {% if show_welcome %}
+    <div id="welcome" class="fade-slide">
+        <div class="container">
+            <div class="descriptionsawelcome">
+                <h1 class="welcome-text">WELCOME!</h1>
+                <div class="descriptionsawelcome">
+                <p>
+                    This portfolio showcases our group's laboratory exercises for the Data Structures and Algorithms course. Here, you can explore our implementations of data structures such as Linked Lists, Stacks, and Queues. 
+                    <br><br>
+                    Each exercise demonstrates a specific concept:
+                    <ul>
+                        <li><b>Linked List:</b> Includes operations such as adding, removing, and displaying movies in a watchlist.</li>
+                        <li><b>Stack Implementation:</b> The Shunting Yard algorithm for converting infix to postfix notation.</li>
+                        <li><b>Queue Implementation:</b> Standard Queue and De-Queue operations.</li>
+                    </ul>
+                    All features are integrated with Flask web application, allowing you to interact with the data structures in real-time. 
+                </p>
+                </div>
+            </div>
         </div>
-        <div class="navigation">
-            <h2>Navigation</h2>
-            <a href="/movies" class="button">Manage Movie Watchlist (Linked List)</a>
+    </div>
+    {% endif %}
+
+    <div id="navigation" class="fade-slide">
+        <div class="container">
+            <h2>Our Projects</h2>
+            <a href="/movies" class="card">
+                <img src="https://images.samsung.com/is/image/samsung/assets/sg/p6_gro2/p6_initial_mktpd/tvs/smart-tv/watch-movies-and-tv/smart-tv-watch-movies-and-tv-f01-pc001.jpg?$1440_N_JPG$" alt="Movie Watchlist" class="card-img">
+                <div class="card-content">
+                    <h3>Manage Movie Watchlist (Linked List)</h3>
+                    <p>Explore, add, remove, and manage your movie list seamlessly.</p>
+                </div>
+            </a>
         </div>
+    </div>
+
+    <div id="about-us">
+        <div class="aboutcon">
+            <h2>About Us</h2>
+            <p>Meet the team behind this project. Click on each tile to learn more about us.</p>
+
+            <div class="team-container">
+                <div class="team-tile" onclick="openModal('John Andrei Saldivar', 'A developer who is an idea-maker and group leader, turns ideas into reality and helps guide the team forward.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029430849867818/Andrei.jpg?ex=67598f6a&is=67583dea&hm=374331701ce38ae4117fe04e950fb84d31f23292448e64eb8768a8a7cd1d5e17&=&format=webp&width=662&height=662" alt="Member 1">
+                    <h3>Andrei</h3>
+                    <p>Group Leader</p>
+                </div>
+                <div class="team-tile" onclick="openModal('Franchesca Cervana', 'A developer who keeps things organized and ensures nothing is overlooked in our projects.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029431147528202/Franchesca.jpg?ex=67598f6b&is=67583deb&hm=17615e120c4825959d5c2be85317cbd649378b0be3fa40e2f5084af3b39ffaa8&=&format=webp&width=662&height=662" alt="Member 2">
+                    <h3>Chesca</h3>
+                    <p>Developer</p>
+                </div>
+                <div class="team-tile" onclick="openModal('Lance Raven Diongco', 'A developer who focuses on breaking down tasks and ensuring everything is well-planned.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029432695357472/Lance.jpg?ex=67598f6b&is=67583deb&hm=9b1f8766eba959404eac3b5aa376b29b934f953cea601c6333636b484dc20493&=&format=webp&width=496&height=662" alt="Member 3">
+                    <h3>Lance</h3>
+                    <p>Developer</p>
+                </div>
+                <div class="team-tile" onclick="openModal('Kimberly Espanol', 'A developer who helps brainstorm and organize ideas to keep the team on track.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029431755837440/Kim.jpg?ex=67598f6b&is=67583deb&hm=3c26a5a2365d82f6d1a3fb9fb27ccd40650040e455cbff68d76936443ef84a48&=&format=webp&width=662&height=662" alt="Member 4">
+                    <h3>Kim</h3>
+                    <p>Developer</p>
+                </div>
+                <div class="team-tile" onclick="openModal('Viency Labanda', 'A developer who explores new perspectives and helps in creating concepts with improved ideas.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029433924030566/Viency.jpg?ex=67598f6b&is=67583deb&hm=a2199c85f01ad97cf46492ebf00db43611d8f8ff68e52a385ea6b51a6b4e695b&=&format=webp&width=662&height=662" alt="Member 5">
+                    <h3>Viency</h3>
+                    <p>Developer</p>
+                </div>
+                <div class="team-tile" onclick="openModal('Sophia Queen Lim', 'A developer who is an idea-maker and creative lead, always coming up with amazing concepts for our projects.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029433475502153/Sophia.jpg?ex=67598f6b&is=67583deb&hm=3924683a1f7949d39cada8c5df18c5d55828b660ac1dce3af5f12d2634041e6a&=&format=webp&width=496&height=662" alt="Member 6">
+                    <h3>Sophia</h3>
+                    <p>Developer</p>
+                </div>
+                <div class="team-tile" onclick="openModal('Ma. Kaye Twinkle Malutao', 'A developer who gathers information and helps structure our project to make it neat and flow smoothly.')">
+                    <img src="https://media.discordapp.net/attachments/1315653090312982638/1316029431458037840/Kaye.jpg?ex=67598f6b&is=67583deb&hm=194d08dc190909ae763607368eb976aa58863733ff0f28e7a40c73789c29c43e&=&format=webp&width=662&height=662" alt="Member 7">
+                    <h3>Kaye</h3>
+                    <p>Developer</p>
+                </div>
+            </div>
+        </div>
+        <div id="member-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h3 id="modal-name"></h3>
+                <p id="modal-description"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Open the modal with dynamic content
+        function openModal(name, description) {
+            document.getElementById('modal-name').textContent = name;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('member-modal').style.display = 'flex'; // Show modal
+        }
+    
+        // Close the modal
+        function closeModal() {
+            document.getElementById('member-modal').style.display = 'none'; // Hide modal
+        }
+    
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('member-modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        window.addEventListener('scroll', function () {
+            const blurOverlay = document.getElementById('scroll-blur');
+            const scrollY = window.scrollY;
+            const blurIntensity = Math.min(scrollY / 20, 10); // Cap the blur at 10px
+            blurOverlay.style.backdropFilter = `blur(${blurIntensity}px)`;
+        });
+    </script>
+
+    <div id="contact">
+        <h2>Contact</h2>
+        <p>Our contact details will be available soon. Feel free to reach out to us once it's updated!</p>
     </div>
 
     <footer>
