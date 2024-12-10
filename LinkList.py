@@ -92,7 +92,7 @@ movie_list = LinkedList()
 
 @app.route('/')
 def home():
-    return render_template('index.html', movies=movie_list.printLinkedList())
+    return render_template('index.html', show_welcome=True)
 
 @app.route('/movies')
 def movies():
