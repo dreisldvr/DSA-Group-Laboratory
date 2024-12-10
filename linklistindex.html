@@ -8,22 +8,41 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f1efff;
-            color: #333;
+            background: url("https://images.ctfassets.net/unrdeg6se4ke/54bA3Jss1QtLOAgKYE6YIQ/19e77e77c7b312eb1fffe3c2638225eb/1-Article1-211123.jpg?&fm=avif&w=1220") no-repeat center center fixed; /* Background image URL */
+            background-size: cover; /* Ensure it covers the entire page */
+            color: #ffffff; /* White text for contrast */
             margin: 0;
             padding: 0;
+            height: 100vh;
+            position: relative;
         }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit; /* Inherit the background image */
+            filter: blur(10px); /* Apply blur effect */
+            z-index: -1; /* Ensure the blur stays behind the text */
+        }
+
 
         h1 {
             text-align: center;
-            background-color: #1B1833;
-            color: white;
-            padding: 20px;
+            background-color: rgba(36, 31, 46, 0.9); /* Slightly darker header */
+            color: #ffd6d6; /* White text for contrast */
+            padding: 25px;
             margin: 0;
+            font-size: 35px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         h3 {
             margin-top: 20px;
+            color: #f3f3f3;
         }
 
         .main-container {
@@ -34,21 +53,22 @@
             max-width: 1200px;
             margin: 20px auto;
             padding: 20px;
+            margin: 65px auto 20px;
         }
 
         .movie-controls {
             flex: 1;
-            background-color: #e7caff;
+            background-color: rgba(36, 31, 46, 0.8);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
             padding: 20px;
         }
 
         .movie-list {
             flex: 1;
-            background-color: #e7caff;
+            background-color:  rgba(36, 31, 46, 0.8);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
             padding: 20px;
             overflow-y: auto;
             max-height: 300px;
@@ -84,22 +104,25 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #2e0c5a;
+            background-color: #631111;
             color: white;
             font-size: 14px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
         }
 
         button:hover {
-            background-color: #ec67b5;
+            background-color: #f43e11;
             color: #031d22;
         }
 
         footer {
+            position: absolute;
+            bottom: 10px;
+            width: 100%;
             text-align: center;
-            margin-top: 20px;
-            color: #888;
+            color: #8b8b8b;
             font-size: 14px;
         }
     </style>
